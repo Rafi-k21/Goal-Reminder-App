@@ -1,4 +1,4 @@
-const API_URL = "https://goal-reminder-app.onrender.com";
+const API_URL = "https://goal-reminder-app.onrender.com/api/goals";
 
 
 
