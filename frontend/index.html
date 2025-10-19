@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Goal Reminder App</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app-container">
+    <header>
+      <h1>🎯 My Goals</h1>
+      <p class="subtitle">Plan • Track • Achieve</p>
+    </header>
+
+    <section class="add-goal-section">
+      <input id="goalTitle" placeholder="Goal Title..." />
+      <input id="goalDeadline" type="date" />
+      <select id="goalCategory">
+        <option value="">Select Category</option>
+        <option value="Daily">Daily</option>
+        <option value="Weekly">Weekly</option>
+        <option value="Monthly">Monthly</option>
+        <option value="Yearly">Yearly</option>
+      </select>
+      <button id="addGoalBtn">+ Add Goal</button>
+    </section>
+
+    <section id="goalsList" class="goals-list"></section>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

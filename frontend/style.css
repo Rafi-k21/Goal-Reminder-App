@@ -1,0 +1,367 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+/* Reset and Base Styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background: radial-gradient(circle at top left, #0d0d0d, #1b1b1b);
+  color: #e6eef6;
+  min-height: 100vh;
+  line-height: 1.5;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 20px 0;
+}
+
+/* Layout Container */
+.app-container {
+  width: 90%;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Header */
+header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.subtitle {
+  color: #888;
+  font-size: 0.9rem;
+  font-weight: 300;
+}
+
+/* Add Goal Section */
+.add-goal-section {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+.add-goal-section input,
+.add-goal-section select {
+  flex: 1;
+  min-width: 200px;
+  padding: 12px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #797d80;
+  border-radius: 10px;
+  font-size: 1rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.add-goal-section input::placeholder,
+.add-goal-section select::placeholder {
+  color: rgba(230, 238, 246, 0.5);
+}
+
+.add-goal-section input:focus,
+.add-goal-section select:focus {
+  outline: none;
+  border-color: #00c6ff;
+  box-shadow: 0 0 0 3px rgba(0, 198, 255, 0.1);
+}
+
+.add-goal-section button {
+  padding: 12px 20px;
+  background: linear-gradient(90deg, #00c6ff, #0072ff);
+  border: none;
+  color: #fff;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.add-goal-section button:hover {
+  background: linear-gradient(90deg, #0072ff, #00c6ff);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 198, 255, 0.3);
+}
+
+/* Goal Card */
+.goal-card {
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+}
+
+.goal-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+}
+
+.goal-card h3 {
+  margin: 0 0 10px;
+  color: #00c6ff;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+small {
+  color: #aaa;
+  font-size: 0.85rem;
+}
+
+/* Progress Bar */
+.progress-container {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  height: 8px;
+  width: 100%;
+  margin-top: 10px;
+  overflow: hidden;
+}
+
+.progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, #00ffb3, #00c6ff);
+  border-radius: 10px;
+  transition: width 0.4s ease;
+}
+
+/* Steps List */
+.steps {
+  margin-top: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.step {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  padding: 12px;
+  border-radius: 12px;
+  transition: all 0.2s ease;
+}
+
+.step:hover {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.step-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+}
+
+.checkbox {
+  width: 18px;
+  height: 18px;
+  border-radius: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.01);
+  transition: all 0.12s ease;
+}
+
+.checkbox.checked {
+  background: linear-gradient(90deg, #00ffb3, #00c6ff);
+  border-color: rgba(0, 0, 0, 0.2);
+  transform: scale(1.03);
+}
+
+.checkbox.checked::after {
+  content: "✓";
+  color: #021018;
+  font-size: 0.75rem;
+  font-weight: bold;
+}
+
+.step span {
+  flex: 1;
+  cursor: text;
+  color: #e6eef6;
+  outline: none;
+}
+
+.step.done span {
+  text-decoration: line-through;
+  color: #7fffd8;
+  opacity: 0.9;
+}
+
+/* Step Actions */
+.actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.actions button {
+  background: transparent;
+  border: none;
+  color: #ff7a7a;
+  font-size: 1rem;
+  padding: 6px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.12s ease;
+}
+
+.actions button:hover {
+  background: rgba(255, 122, 122, 0.08);
+  transform: translateY(-2px);
+}
+
+/* Add Step Input */
+.add-step {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+  align-items: center;
+}
+
+.add-step input[type="text"] {
+  flex: 1;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  background: rgba(255, 255, 255, 0.02);
+  color: #e6eef6;
+  font-size: 1rem;
+}
+
+.add-step input[type="text"]::placeholder {
+  color: rgba(230, 238, 246, 0.45);
+}
+
+.add-step input[type="text"]:focus {
+  outline: none;
+  border-color: #00c6ff;
+  box-shadow: 0 0 0 3px rgba(0, 198, 255, 0.1);
+}
+
+.add-step button {
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  background: linear-gradient(90deg, #00ffb3, #00c6ff);
+  color: #021018;
+  font-weight: 600;
+  box-shadow: 0 4px 12px rgba(0, 198, 255, 0.2);
+  transition: all 0.12s ease;
+}
+
+.add-step button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 198, 255, 0.3);
+}
+
+/* Delete Goal Button */
+.delete-goal {
+  margin-top: 12px;
+  width: 160px;
+  background: linear-gradient(90deg, #ff6b6b, #ff3b3b);
+  color: #fff;
+  border: none;
+  padding: 10px 14px;
+  border-radius: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.12s ease;
+}
+
+.delete-goal:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 59, 59, 0.3);
+}
+
+/* Content Editable Focus */
+[contenteditable="true"] {
+  border-radius: 6px;
+  padding: 2px 6px;
+  transition: all 0.2s ease;
+}
+
+[contenteditable="true"]:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(0, 198, 255, 0.1);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+/* Meta Pill */
+.meta-pill {
+  display: inline-flex;
+  background: rgba(255, 255, 255, 0.02);
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  color: #9aa7b3;
+  font-size: 0.85rem;
+  font-weight: 300;
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+  .app-container {
+    width: 100%;
+    padding: 0 10px;
+  }
+
+  .add-goal-section {
+    flex-direction: column;
+  }
+
+  .add-goal-section input,
+  .add-goal-section select {
+    min-width: unset;
+  }
+
+  .delete-goal {
+    width: 100%;
+  }
+
+  .step {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+  }
+
+  .step-left {
+    flex-direction: row;
+  }
+}
+
+/* Accessibility and Form Controls */
+button:focus,
+input:focus,
+select:focus,
+[contenteditable="true"]:focus {
+  outline: 2px solid #00c6ff;
+  outline-offset: 2px;
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
