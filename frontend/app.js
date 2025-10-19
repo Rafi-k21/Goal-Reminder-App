@@ -1,4 +1,6 @@
-const API_URL = "http://localhost:5000/api/goals";
+const API_URL = "https://goal-reminder-app.onrender.com";
+
+
 
 async function loadGoals() {
   const res = await fetch(API_URL);
