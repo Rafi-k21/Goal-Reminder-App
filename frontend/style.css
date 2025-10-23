@@ -365,3 +365,93 @@ button:disabled {
   opacity: 0.5;
   cursor: not-allowed;
 }
+/* extra*/
+
+.user-section {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.user-section button {
+  background: #ff5252;
+  border: none;
+  color: white;
+  padding: 6px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.user-section button:hover {
+  background: #ff3030;
+}
+
+footer {
+  text-align: center;
+  margin-top: 30px;
+}
+
+#reminderBtn {
+  background: #333;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#reminderBtn:hover {
+  background: #555;
+}
+
+
+/* login register */
+.auth-body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: linear-gradient(135deg, #2e2e2e, #1b1b1b);
+  color: white;
+  font-family: 'Poppins', sans-serif;
+}
+
+.auth-container {
+  background: #2c2c2c;
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+  width: 320px;
+  text-align: center;
+}
+
+.auth-container input {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: none;
+  border-radius: 8px;
+}
+
+.auth-container button {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  border: none;
+  border-radius: 8px;
+  background: #ff3c00;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.auth-container button:hover {
+  background: #ff5722;
+}
+
+.guest-btn {
+  background: #444;
+}

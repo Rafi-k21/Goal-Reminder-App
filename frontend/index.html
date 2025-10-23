@@ -6,13 +6,22 @@
   <title>Goal Reminder App</title>
   <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
   <div class="app-container">
+    <!-- HEADER -->
     <header>
-      <h1>🎯 My Goals</h1>
+      <div class="header-top">
+        <h1>🎯 My Goals</h1>
+        <div id="userSection" class="user-section">
+          <span id="userInfo"></span>
+          <button id="logoutBtn">Logout</button>
+        </div>
+      </div>
       <p class="subtitle">Plan • Track • Achieve</p>
     </header>
 
+    <!-- ADD GOAL SECTION -->
     <section class="add-goal-section">
       <input id="goalTitle" placeholder="Goal Title..." />
       <input id="goalDeadline" type="date" />
@@ -26,8 +35,14 @@
       <button id="addGoalBtn">+ Add Goal</button>
     </section>
 
+    <!-- GOALS LIST -->
     <section id="goalsList" class="goals-list"></section>
   </div>
+
+  <!-- FOOTER / REMINDER BUTTON -->
+  <footer>
+    <button id="reminderBtn" onclick="showReminder()">🕒 Daily Motivation</button>
+  </footer>
 
   <script src="app.js"></script>
 </body>
