@@ -1,12 +1,13 @@
-// ✅ Backend API base URL (your Render backend)
+// ✅ Backend API base URL (Render backend)
 const API_URL = "https://goal-reminder-app.onrender.com/api";
 
 // ====== AUTH HANDLING ======
 let token = localStorage.getItem("token");
 let user = JSON.parse(localStorage.getItem("user"));
+let isGuest = sessionStorage.getItem("guest");
 
 // Redirect if not logged in (except guest mode)
-if (!token && !sessionStorage.getItem("guest")) {
+if (!token && !isGuest) {
   window.location.href = "login.html";
 }
 
@@ -20,10 +21,18 @@ document.getElementById("logoutBtn").addEventListener("click", () => {
 
 // Show user info
 const userInfo = document.getElementById("userInfo");
-if (sessionStorage.getItem("guest")) {
-  userInfo.innerText = "👤 Guest Mode (Limited Access)";
+if (isGuest) {
+  userInfo.innerText = "👤 Guest Mode ";
 } else if (user) {
   userInfo.innerText = `👋 Hello, ${user.name}`;
+}
+
+// ====== LOCAL STORAGE FOR GUEST ======
+function getGuestGoals() {
+  return JSON.parse(localStorage.getItem("guestGoals") || "[]");
+}
+function saveGuestGoals(goals) {
+  localStorage.setItem("guestGoals", JSON.stringify(goals));
 }
 
 // ====== GOALS HANDLING ======
@@ -32,10 +41,16 @@ async function loadGoals() {
   list.innerHTML = "<p>Loading goals...</p>";
 
   try {
-    const res = await fetch(`${API_URL}/goals`, {
-      headers: { Authorization: `Bearer ${token}` },
-    });
-    const goals = await res.json();
+    let goals = [];
+
+    if (isGuest) {
+      goals = getGuestGoals();
+    } else {
+      const res = await fetch(`${API_URL}/goals`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      goals = await res.json();
+    }
 
     list.innerHTML = "";
 
@@ -80,12 +95,26 @@ async function loadGoals() {
       list.appendChild(div);
     });
   } catch (error) {
-    list.innerHTML = "<p>⚠️ Failed to load goals. Please log in again.</p>";
+    console.error("Error loading goals:", error);
+    list.innerHTML = "<p>⚠️ Failed to load goals.</p>";
   }
 }
 
 // ====== CRUD FUNCTIONS ======
 async function updateGoal(id, title, category, deadline) {
+  if (isGuest) {
+    const goals = getGuestGoals();
+    const goal = goals.find((g) => g._id === id);
+    if (goal) {
+      goal.title = title;
+      goal.category = category;
+      goal.deadline = deadline;
+      saveGuestGoals(goals);
+    }
+    loadGoals();
+    return;
+  }
+
   await fetch(`${API_URL}/goals/${id}`, {
     method: "PUT",
     headers: {
@@ -101,6 +130,18 @@ async function addStep(goalId) {
   const text = input.value.trim();
   if (!text) return;
 
+  if (isGuest) {
+    const goals = getGuestGoals();
+    const goal = goals.find((g) => g._id === goalId);
+    if (goal) {
+      goal.steps.push({ _id: Date.now().toString(), text, done: false });
+      saveGuestGoals(goals);
+    }
+    input.value = "";
+    loadGoals();
+    return;
+  }
+
   await fetch(`${API_URL}/goals/${goalId}/steps`, {
     method: "POST",
     headers: {
@@ -114,6 +155,18 @@ async function addStep(goalId) {
 }
 
 async function editStep(goalId, stepId, text) {
+  if (isGuest) {
+    const goals = getGuestGoals();
+    const goal = goals.find((g) => g._id === goalId);
+    if (goal) {
+      const step = goal.steps.find((s) => s._id === stepId);
+      if (step) step.text = text;
+      saveGuestGoals(goals);
+    }
+    loadGoals();
+    return;
+  }
+
   await fetch(`${API_URL}/goals/${goalId}/steps/${stepId}`, {
     method: "PUT",
     headers: {
@@ -125,6 +178,18 @@ async function editStep(goalId, stepId, text) {
 }
 
 async function toggleStep(goalId, stepId) {
+  if (isGuest) {
+    const goals = getGuestGoals();
+    const goal = goals.find((g) => g._id === goalId);
+    if (goal) {
+      const step = goal.steps.find((s) => s._id === stepId);
+      if (step) step.done = !step.done;
+      saveGuestGoals(goals);
+    }
+    loadGoals();
+    return;
+  }
+
   await fetch(`${API_URL}/goals/${goalId}/steps/${stepId}/toggle`, {
     method: "PUT",
     headers: { Authorization: `Bearer ${token}` },
@@ -133,6 +198,17 @@ async function toggleStep(goalId, stepId) {
 }
 
 async function deleteStep(goalId, stepId) {
+  if (isGuest) {
+    const goals = getGuestGoals();
+    const goal = goals.find((g) => g._id === goalId);
+    if (goal) {
+      goal.steps = goal.steps.filter((s) => s._id !== stepId);
+      saveGuestGoals(goals);
+    }
+    loadGoals();
+    return;
+  }
+
   await fetch(`${API_URL}/goals/${goalId}/steps/${stepId}`, {
     method: "DELETE",
     headers: { Authorization: `Bearer ${token}` },
@@ -141,6 +217,13 @@ async function deleteStep(goalId, stepId) {
 }
 
 async function deleteGoal(id) {
+  if (isGuest) {
+    const goals = getGuestGoals().filter((g) => g._id !== id);
+    saveGuestGoals(goals);
+    loadGoals();
+    return;
+  }
+
   await fetch(`${API_URL}/goals/${id}`, {
     method: "DELETE",
     headers: { Authorization: `Bearer ${token}` },
@@ -156,8 +239,22 @@ document.getElementById("addGoalBtn").addEventListener("click", async () => {
 
   if (!title) return alert("Please enter a goal title!");
 
-  if (sessionStorage.getItem("guest")) {
-    return alert("Guest mode is limited — create an account to save your goals.");
+  if (isGuest) {
+    const goals = getGuestGoals();
+    const newGoal = {
+      _id: Date.now().toString(),
+      title,
+      deadline,
+      category,
+      steps: [],
+    };
+    goals.push(newGoal);
+    saveGuestGoals(goals);
+    loadGoals();
+    document.getElementById("goalTitle").value = "";
+    document.getElementById("goalDeadline").value = "";
+    document.getElementById("goalCategory").value = "";
+    return;
   }
 
   await fetch(`${API_URL}/goals`, {

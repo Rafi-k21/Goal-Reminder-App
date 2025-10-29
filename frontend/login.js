@@ -2,7 +2,7 @@
 const API_BASE_URL =
   window.location.hostname === "localhost"
     ? "http://localhost:5000/api/auth"
-    : "https://goal-reminder-app.onrender.com/api/auth";
+    : "https://goal-reminder-app.onrender.com/api/auth/login";
 
 // ✅ Wait until DOM is loaded before accessing elements
 document.addEventListener("DOMContentLoaded", () => {

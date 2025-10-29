@@ -1,6 +1,6 @@
 // ✅ Always wrap code to ensure DOM is ready
 document.addEventListener("DOMContentLoaded", () => {
-  const API_URL = "http://localhost:5000/api/auth/register";
+  const API_URL = "https://goal-reminder-app.onrender.com/api/auth/register";
   const registerBtn = document.getElementById("registerBtn");
 
   if (!registerBtn) {
