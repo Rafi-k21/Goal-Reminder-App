@@ -1,10 +1,11 @@
 /*
 |--------------------------------------------------------------------------
-| PROFESSIONAL DARK THEME CSS
+| COMPLETE PROFESSIONAL DARK THEME CSS
 |--------------------------------------------------------------------------
-| - Anchors Footer to the bottom of the viewport.
-| - Centers all primary content (add goal section, goals list).
-| - Highlights the User/Logout section with clean accents.
+| - Full set of styles for the sleek dark/blue theme.
+| - Implements CSS Grid for perfectly centered title in the header.
+| - Includes responsive design for mobile devices.
+| - Ensures the footer is anchored to the bottom.
 */
 
 /* --- 1. Root Variables & Font Import --- */
@@ -16,7 +17,8 @@
   --color-secondary: #00ffb3;   /* Teal/Green Accent for Progress */
   --color-error: #ff5252;       /* Clear Red for Delete/Logout */
   --bg-dark-soft: #1b1b1b;      /* Main Background */
-  --bg-dark-card: #282828;      /* Slightly lighter background for components */
+  --bg-dark-card: #282828;      /* Slightly lighter background for components/cards */
+  --bg-dark-step: #1a1a1a;      /* Darker background for step inputs */
   --text-light: #e6eef6;
   --text-muted: #9aa7b3;
   --shadow-subtle: 0 4px 12px rgba(0, 0, 0, 0.2);
@@ -46,7 +48,7 @@ body {
     width: 100%;
     display: flex;
     flex-direction: column;
-    align-items: center; /* Centers content horizontally within the wrap */
+    align-items: center; /* Centers app-container horizontally */
 }
 
 .app-container {
@@ -54,23 +56,22 @@ body {
     max-width: 800px;
     margin: 0 auto;
     padding: 20px 0;
-    /* This container holds the centered content */
 }
 
-/* --- 3. Header & Navigation (User Section Anchored) --- */
+/* --- 3. Header & Navigation (Centered Title & User Profile) --- */
 
 .main-header-nav {
-  /* Use the full width of the app-container */
   width: 100%; 
-  display: flex;
-  justify-content: space-between; /* Pushes title and user section to opposite ends */
+  display: grid; 
+  grid-template-columns: 1fr auto 1fr; /* Left-spacer | Content (Centered) | Right-spacer */
   align-items: center;
   margin-bottom: 20px;
 }
 
-/* App Title */
+/* Title is placed in the center column */
 .app-title {
-    margin: 0; /* Remove header margin to align with flex */
+    grid-column: 2 / 3; 
+    margin: 0;
     font-size: 1.8rem;
     font-weight: 700;
     color: var(--color-primary);
@@ -83,11 +84,13 @@ body {
   font-weight: 300;
   text-align: center;
   margin-bottom: 40px;
-  display: block; /* Ensure it takes its own line below the main-header-nav */
+  display: block; 
 }
 
-/* User Profile Section Styling (Replaces .user-section) */
+/* User Profile Section Styling */
 .user-profile {
+  grid-column: 3 / 4; /* Positioned in the right column */
+  justify-self: end; /* Pushes content to the far right */
   display: flex;
   align-items: center;
   gap: 12px;
@@ -110,7 +113,6 @@ body {
   font-weight: 400;
 }
 
-/* Logout Button (Using the new .logout-btn class from HTML) */
 .logout-btn {
   background: var(--color-error);
   border: none;
@@ -128,7 +130,6 @@ body {
   transform: translateY(-1px);
   box-shadow: 0 2px 6px rgba(255, 82, 82, 0.4);
 }
-
 
 /* --- 4. Main Content: Add Goal Section --- */
 
@@ -154,7 +155,7 @@ body {
 }
 
 .add-goal-section select {
-    color: var(--text-muted); /* Color select text for better visibility */
+    color: var(--text-muted);
 }
 
 .add-goal-section input::placeholder {
@@ -169,15 +170,15 @@ body {
 }
 
 .add-goal-section option {
-    background: var(--bg-dark-card); /* Ensure options are readable */
+    background: var(--bg-dark-card); 
     color: var(--text-light);
 }
 
-.add-goal-section .primary-btn { /* Using the new button class */
+.add-goal-section .primary-btn {
   padding: 12px 20px;
   background: linear-gradient(90deg, var(--color-secondary), var(--color-primary));
   border: none;
-  color: #021018; /* Dark text on bright button */
+  color: #021018; 
   border-radius: 10px;
   font-size: 1rem;
   font-weight: 700;
@@ -191,11 +192,10 @@ body {
   box-shadow: 0 4px 12px rgba(0, 198, 255, 0.4);
 }
 
-/* --- 5. Goal Card List --- */
+/* --- 5. Goal Card List & Structure --- */
 
 .goals-list {
-    /* Since app-container has max-width and is centered, this works automatically */
-    padding-bottom: 40px; /* Space above footer */
+    padding-bottom: 40px;
 }
 
 /* Goal Card */
@@ -228,7 +228,7 @@ body {
   border-radius: 10px;
   height: 8px;
   width: 100%;
-  margin-top: 10px;
+  margin: 15px 0; /* Adjusted vertical margin */
   overflow: hidden;
 }
 
@@ -238,29 +238,82 @@ body {
   border-radius: 10px;
   transition: width 0.4s ease;
 }
+/* --- Step Input Component: AddStep --- */
 
-/* Steps List */
-.steps {
-  margin-top: 15px;
+/* Base container for flex layout */
+.add-step {
   display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.step {
-  display: flex;
-  gap: 10px;
+  gap: 0.5rem; /* 8px */
+  margin-top: 0.75rem; /* 12px */
   align-items: center;
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  padding: 12px;
-  border-radius: 12px;
-  transition: all 0.2s ease;
+  padding: 0 0.25rem; 
 }
 
+/* --- Input Field Styling --- */
+
+.add-step input[type="text"] {
+  flex: 1;
+  padding: 0.625rem 0.75rem; /* 10px 12px */
+  border-radius: 0.625rem; /* 10px */
+  border: 1px solid rgba(255, 255, 255, 0.1); 
+  background: rgba(255, 255, 255, 0.04);
+  font-family: inherit; 
+  color: #e6eef6;
+  font-size: 1rem;
+  transition: all 0.2s ease-in-out;
+}
+
+/* Placeholder text refinement */
+.add-step input[type="text"]::placeholder {
+  color: rgba(230, 238, 246, 0.6); 
+  opacity: 1; 
+}
+
+/* Focus state for accessibility and visual feedback */
+.add-step input[type="text"]:focus {
+  outline: none;
+  border-color: #00e5ff; 
+  box-shadow: 0 0 0 3px rgba(0, 229, 255, 0.3), 
+              0 0 10px rgba(0, 229, 255, 0.2);
+}
+
+/* --- Button Styling --- */
+
+.add-step button {
+  padding: 0.625rem 1rem; 
+  border-radius: 0.625rem; /* 10px */
+  border: none;
+  cursor: pointer;
+  background: linear-gradient(90deg, #00ffb3 5%, #00c6ff 95%);
+  color: #021a24; 
+  font-weight: 700; 
+  font-size: 1rem; 
+  transition: all 0.25s cubic-bezier(0.25, 0.8, 0.25, 1);
+  box-shadow: 0 4px 15px rgba(0, 198, 255, 0.35); 
+}
+
+/* Hover/Active states for interactivity */
+.add-step button:hover {
+  transform: translateY(-3px); 
+  box-shadow: 0 8px 25px rgba(0, 198, 255, 0.5), 
+              0 2px 4px rgba(0, 0, 0, 0.2); 
+}
+
+.add-step button:active {
+  transform: translateY(-1px);
+  box-shadow: 0 3px 10px rgba(0, 198, 255, 0.25); 
+}
+
+/* Add a disabled state for completeness */
+.add-step button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
 /* Delete Goal Button */
 .delete-goal {
-  margin-top: 12px;
+  margin-top: 15px; /* Adjusted vertical margin */
   width: 160px;
   background: linear-gradient(90deg, #ff6b6b, var(--color-error));
   color: #fff;
@@ -277,7 +330,7 @@ body {
   box-shadow: 0 6px 20px rgba(255, 59, 59, 0.3);
 }
 
-/* --- 6. Sticky Footer (Bottom Anchor) --- */
+/* --- 7. Sticky Footer (Bottom Anchor) --- */
 
 .main-footer {
     width: 100%;
@@ -298,29 +351,32 @@ body {
     font-weight: 600;
 }
 
-/* --- 7. Responsive Adjustments --- */
+/* --- 8. Responsive Adjustments --- */
 
 @media (max-width: 600px) {
+    /* Header layout shift: Title stacks above User Profile */
     .main-header-nav {
-        flex-direction: column;
-        align-items: flex-start;
+        display: flex; /* Override grid for simplicity on mobile */
+        flex-direction: column; 
+        align-items: center; 
         gap: 15px;
     }
 
     .app-title {
         font-size: 1.5rem;
+        text-align: center; /* Ensure title is centered visually */
     }
-
+    
     .user-profile {
         width: 100%;
         justify-content: space-between;
     }
-}
 
-@media (max-width: 480px) {
+    /* Input section cleanup: stack inputs vertically */
     .add-goal-section {
         flex-direction: column;
         align-items: stretch;
+        gap: 8px; /* Slightly tighter spacing */
     }
 
     .add-goal-section input,
