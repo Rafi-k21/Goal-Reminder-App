@@ -3,13 +3,15 @@ import cors from "cors";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
 import authRoutes from "./routes/authRoutes.js";
+import goalRoutes from "./routes/goalRoutes.js"; // ✅ add this
 
 dotenv.config();
 const app = express();
 
 // ✅ Use this CORS configuration
 const allowedOrigins = [
-  "https://goal-reminder-app.netlify.app",
+  "https://goal-reminder-app.onrender.com",  // ✅ your Render backend
+  "https://goal-reminder-app.netlify.app",   // ✅ your frontend
   "http://localhost:3000",
   "http://localhost:5173",
 ];
@@ -37,8 +39,9 @@ app.use(express.json());
 // ✅ Test route
 app.get("/", (req, res) => res.send("✅ Backend is running fine!"));
 
-// ✅ Routes
+// ✅ API Routes
 app.use("/api/auth", authRoutes);
+app.use("/api/goals", goalRoutes); // ✅ Mount your goal routes
 
 // ✅ MongoDB connection
 mongoose
