@@ -2,7 +2,7 @@
 const API_BASE_URL =
   window.location.hostname === "localhost"
     ? "http://localhost:5000/api/auth"
-    : "https://goal-reminder-app.onrender.com/api/auth/login";
+    : "https://goal-reminder-backend.onrender.com/api/auth"; // <-- your Render backend URL
 
 // ✅ Wait until DOM is loaded before accessing elements
 document.addEventListener("DOMContentLoaded", () => {
@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
     return;
   }
 
-  // 🔐 Login Handler
+  // 🔐 LOGIN HANDLER
   loginBtn.addEventListener("click", async () => {
     const email = emailInput.value.trim();
     const password = passwordInput.value.trim();
@@ -33,7 +33,6 @@ document.addEventListener("DOMContentLoaded", () => {
         body: JSON.stringify({ email, password }),
       });
 
-      // Try to parse JSON safely
       let data;
       try {
         data = await res.json();
@@ -42,22 +41,22 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       if (res.ok) {
-        // ✅ Save user & token
+        // ✅ Save user info & token
         localStorage.setItem("token", data.token);
         localStorage.setItem("user", JSON.stringify(data.user));
 
         alert(`Welcome back, ${data.user.name || "user"}!`);
         window.location.href = "index.html";
       } else {
-        alert(data.message || "Login failed. Please check your credentials.");
+        alert(data.message || "❌ Login failed. Please check your credentials.");
       }
     } catch (error) {
       console.error("Login error:", error);
-      alert("Server error. Please try again later.");
+      alert("⚠️ Server error. Please try again later.");
     }
   });
 
-  // 👤 Guest Mode
+  // 👤 GUEST MODE
   if (guestBtn) {
     guestBtn.addEventListener("click", () => {
       sessionStorage.setItem("guest", "true");
