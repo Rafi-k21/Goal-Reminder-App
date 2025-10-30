@@ -1,10 +1,8 @@
-// ✅ Auto-detect environment (local or Render)
 const API_BASE_URL =
   window.location.hostname === "localhost"
     ? "http://localhost:5000/api/auth"
-    : "https://goal-reminder-backend.onrender.com/api/auth"; // <-- your Render backend URL
+    : "https://goal-reminder-app.onrender.com/api/auth"; 
 
-// ✅ Wait until DOM is loaded before accessing elements
 document.addEventListener("DOMContentLoaded", () => {
   const loginBtn = document.getElementById("loginBtn");
   const guestBtn = document.getElementById("guestBtn");
@@ -32,20 +30,11 @@ document.addEventListener("DOMContentLoaded", () => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ email, password }),
-
-        // 🚀 Important: Allow browser to handle CORS credentials and preflight properly
         mode: "cors",
-        credentials: "omit", // don’t send cookies — only needed if backend expects them
+        body: JSON.stringify({ email, password }),
       });
 
-      // Try parsing response safely
-      let data;
-      try {
-        data = await res.json();
-      } catch {
-        throw new Error("Invalid JSON response from server");
-      }
+      const data = await res.json();
 
       if (res.ok) {
         // ✅ Save user info & token
