@@ -29,15 +29,22 @@ document.addEventListener("DOMContentLoaded", () => {
     try {
       const res = await fetch(`${API_BASE_URL}/login`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+        },
         body: JSON.stringify({ email, password }),
+
+        // 🚀 Important: Allow browser to handle CORS credentials and preflight properly
+        mode: "cors",
+        credentials: "omit", // don’t send cookies — only needed if backend expects them
       });
 
+      // Try parsing response safely
       let data;
       try {
         data = await res.json();
       } catch {
-        throw new Error("Invalid server response");
+        throw new Error("Invalid JSON response from server");
       }
 
       if (res.ok) {
