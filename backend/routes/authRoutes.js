@@ -41,6 +41,15 @@ router.post("/register", async (req, res) => {
   }
 });
 
+// ✅ Ensure OPTIONS request responds properly
+router.options("/login", (req, res) => {
+  res.setHeader("Access-Control-Allow-Origin", "https://goal-reminder-app.netlify.app");
+  res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
+  res.status(204).end();
+});
+
+
 // ✅ LOGIN
 router.post("/login", async (req, res) => {
   try {
