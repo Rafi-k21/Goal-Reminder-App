@@ -3,45 +3,45 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Goal Reminder App</title>
+  <title>Global Goal Tracker | Plan • Track • Achieve</title>
   <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 
 <body>
-  <div class="app-container">
-    <!-- HEADER -->
-    <header>
-      <div class="header-top">
-        <h1>🎯 My Goals</h1>
-        <div id="userSection" class="user-section">
-          <span id="userInfo"></span>
-          <button id="logoutBtn">Logout</button>
+  <div class="content-wrap">
+    
+    <div class="app-container">
+      
+      <nav class="main-header-nav">
+        <h1 class="app-title">🎯 Global Goal Tracker</h1>
+        
+        <div id="userSection" class="user-profile">
+          <span id="userInfo" class="user-greeting"></span>
+          <button id="logoutBtn" class="logout-btn">Logout</button>
         </div>
-      </div>
-      <p class="subtitle">Plan • Track • Achieve</p>
-    </header>
+      </nav>
 
-    <!-- ADD GOAL SECTION -->
-    <section class="add-goal-section">
-      <input id="goalTitle" placeholder="Goal Title..." />
-      <input id="goalDeadline" type="date" />
-      <select id="goalCategory">
-        <option value="">Select Category</option>
-        <option value="Daily">Daily</option>
-        <option value="Weekly">Weekly</option>
-        <option value="Monthly">Monthly</option>
-        <option value="Yearly">Yearly</option>
-      </select>
-      <button id="addGoalBtn">+ Add Goal</button>
-    </section>
+      <p class="subtitle-motto">Plan • Track • Achieve</p>
+      
+      <section class="add-goal-section">
+        <input id="goalTitle" placeholder="Enter Goal Title..." />
+        <input id="goalDeadline" type="date" />
+        <select id="goalCategory">
+          <option value="" disabled selected>Select Category</option>
+          <option value="Daily">Daily</option>
+          <option value="Weekly">Weekly</option>
+          <option value="Monthly">Monthly</option>
+          <option value="Yearly">Yearly</option>
+        </select>
+        <button id="addGoalBtn" class="primary-btn">+ Add Goal</button>
+      </section>
 
-    <!-- GOALS LIST -->
-    <section id="goalsList" class="goals-list"></section>
-  </div>
+      <section id="goalsList" class="goals-list"></section>
 
-  <!-- FOOTER / REMINDER BUTTON -->
-  <footer>
-    <button id="reminderBtn" onclick="showReminder()">🕒 Daily Motivation</button>
+    </div>
+  </div> <footer class="main-footer">
+    <p>&copy; 2025 Global Goal Tracker. Built with purpose by Rafi Khan.</p>
   </footer>
 
   <script src="app.js"></script>
