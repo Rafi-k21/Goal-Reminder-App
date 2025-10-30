@@ -1,244 +1,252 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
-
-/* === Base Reset === */
+/* Reset default styles */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: 'Montserrat', sans-serif;
 }
 
-html, body {
-  height: 100%;
-  font-family: "Poppins", sans-serif;
-  background: radial-gradient(circle at top left, #0b0b0d, #101012, #17171a);
-  color: #e8f1ff;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  padding: 40px 20px;
+/* Root variables for dark power and ambition theme */
+:root {
+  --bg-dark: #1a1a1a; /* Deep black for background */
+  --accent-gold: #d4a017; /* Luxurious gold for highlights */
+  --accent-red: #a61c1c; /* Bold red for ambition and urgency */
+  --text-light: #e0e0e0; /* Light gray for readable text */
+  --card-bg: #2b2b2b; /* Slightly lighter dark for cards */
+  --shadow: 0 4px 15px rgba(0, 0, 0, 0.5); /* Subtle shadow for depth */
+  --progress-bg: #3a3a3a; /* Neutral gray for progress background */
 }
 
-/* === Container === */
-.app-container {
-  width: 100%;
-  max-width: 860px;
-  background: rgba(255, 255, 255, 0.04);
-  backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 24px;
-  padding: 30px 40px;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-  transition: all 0.3s ease;
+/* Body styling */
+body {
+  background-color: var(--bg-dark);
+  color: var(--text-light);
+  min-height: 100vh;
+  padding: 20px;
+  font-size: 16px;
+  line-height: 1.5;
 }
 
-/* === Header === */
-header {
+/* Header/User Info */
+#userInfo {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--accent-gold);
   text-align: center;
-  margin-bottom: 40px;
-}
-
-header h1 {
-  font-size: 2.2rem;
-  font-weight: 600;
-  background: linear-gradient(90deg, #00c6ff, #00ffb3);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-header .subtitle {
-  color: #888;
-  font-size: 0.95rem;
-  margin-top: 6px;
-}
-
-/* === Input Section === */
-.add-goal-section {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  justify-content: center;
-  margin-bottom: 30px;
-}
-
-.add-goal-section input,
-.add-goal-section select {
-  flex: 1;
-  min-width: 200px;
-  background: rgba(255, 255, 255, 0.07);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  color: #e8f1ff;
-  padding: 14px;
-  border-radius: 12px;
-  font-size: 1rem;
-  transition: all 0.25s ease;
-}
-
-.add-goal-section input:focus,
-.add-goal-section select:focus {
-  border-color: #00c6ff;
-  box-shadow: 0 0 0 3px rgba(0, 198, 255, 0.2);
-  outline: none;
-}
-
-.add-goal-section button {
-  padding: 14px 26px;
-  background: linear-gradient(90deg, #00ffb3, #00c6ff);
-  border: none;
-  border-radius: 12px;
-  color: #0b0b0d;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.25s ease;
-}
-
-.add-goal-section button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(0, 198, 255, 0.3);
-}
-
-/* === Goal Cards === */
-.goal-card {
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 20px;
-  padding: 24px;
   margin-bottom: 20px;
-  transition: all 0.3s ease;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Buttons */
+button, #logoutBtn, #addGoalBtn {
+  background-color: var(--accent-red);
+  color: var(--text-light);
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 600;
+  text-transform: uppercase;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button:hover, #logoutBtn:hover, #addGoalBtn:hover {
+  background-color: #c72c2c;
+  transform: translateY(-2px);
+}
+
+button:active, #logoutBtn:active, #addGoalBtn:active {
+  transform: translateY(0);
+}
+
+/* Goal Card */
+.goal-card {
+  background-color: var(--card-bg);
+  border: 1px solid var(--accent-gold);
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: var(--shadow);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .goal-card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 10px 30px rgba(0, 198, 255, 0.15);
+  transform: scale(1.02);
+  box-shadow: 0 6px 20px rgba(212, 160, 23, 0.3);
 }
 
 .goal-card h3 {
-  color: #00e5ff;
-  font-weight: 600;
-  margin-bottom: 8px;
+  color: var(--accent-gold);
+  font-size: 1.4rem;
+  margin-bottom: 10px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.goal-card h3[contenteditable]:focus {
+  outline: 2px solid var(--accent-red);
+  background-color: #333;
 }
 
 .goal-card small {
-  color: #999;
-  font-size: 0.85rem;
+  color: var(--text-light);
+  font-size: 0.9rem;
+  opacity: 0.8;
 }
 
-/* === Progress Bar === */
+/* Progress Bar */
 .progress-container {
-  background: rgba(255, 255, 255, 0.1);
+  background-color: var(--progress-bg);
+  border-radius: 10px;
   height: 10px;
-  border-radius: 6px;
-  margin-top: 10px;
+  margin: 10px 0;
   overflow: hidden;
 }
 
 .progress-bar {
+  background: linear-gradient(90deg, var(--accent-red), var(--accent-gold));
   height: 100%;
-  background: linear-gradient(90deg, #00ffb3, #00c6ff);
-  transition: width 0.4s ease;
+  transition: width 0.5s ease-in-out;
 }
 
-/* === Steps === */
+/* Steps */
 .steps {
-  margin-top: 18px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+  margin: 15px 0;
 }
 
 .step {
-  background: rgba(255, 255, 255, 0.04);
-  border-radius: 10px;
-  padding: 12px 14px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  transition: all 0.25s ease;
+  padding: 10px;
+  background-color: #333;
+  border-radius: 5px;
+  margin-bottom: 8px;
+  transition: background-color 0.3s ease;
 }
 
-.step:hover {
-  background: rgba(255, 255, 255, 0.07);
-}
-
-.step span {
-  flex: 1;
-  color: #e8f1ff;
-  font-size: 1rem;
-}
-
-.step.done span {
+.step.done {
+  background-color: #4a4a4a;
   text-decoration: line-through;
-  color: #00ffb3;
+  color: var(--accent-gold);
 }
 
-/* === Add Step Input === */
+.step span[contenteditable] {
+  flex-grow: 1;
+  cursor: pointer;
+}
+
+.step span[contenteditable]:focus {
+  outline: 2px solid var(--accent-red);
+  background-color: #444;
+}
+
+.step button {
+  background: none;
+  color: var(--accent-red);
+  font-size: 1rem;
+  padding: 5px;
+}
+
+.step button:hover {
+  color: #c72c2c;
+}
+
+/* Add Step Input */
 .add-step {
   display: flex;
   gap: 10px;
-  margin-top: 14px;
+  margin-top: 10px;
 }
 
 .add-step input {
-  flex: 1;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 10px;
-  padding: 10px 14px;
-  color: #e8f1ff;
+  flex-grow: 1;
+  padding: 8px;
+  border: 1px solid var(--accent-gold);
+  border-radius: 5px;
+  background-color: #333;
+  color: var(--text-light);
 }
 
-.add-step button {
-  background: linear-gradient(90deg, #00ffb3, #00c6ff);
-  border: none;
-  border-radius: 10px;
-  padding: 10px 16px;
-  color: #0b0b0d;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.25s ease;
+.add-step input:focus {
+  outline: 2px solid var(--accent-red);
 }
 
-.add-step button:hover {
-  transform: scale(1.05);
-}
-
-/* === Delete Goal === */
+/* Delete Goal Button */
 .delete-goal {
-  margin-top: 16px;
-  background: linear-gradient(90deg, #ff6b6b, #ff3b3b);
-  color: white;
-  border: none;
-  padding: 10px 14px;
-  border-radius: 10px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.25s ease;
+  background-color: transparent;
+  border: 1px solid var(--accent-red);
+  color: var(--accent-red);
+  margin-top: 10px;
 }
 
 .delete-goal:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(255, 59, 59, 0.3);
+  background-color: var(--accent-red);
+  color: var(--text-light);
 }
 
-/* === Footer === */
-footer {
+/* Add Goal Form */
+#goalTitle, #goalDeadline, #goalCategory {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid var(--accent-gold);
+  border-radius: 5px;
+  background-color: #333;
+  color: var(--text-light);
+  font-size: 1rem;
+}
+
+#goalTitle:focus, #goalDeadline:focus, #goalCategory:focus {
+  outline: 2px solid var(--accent-red);
+}
+
+/* Goals List */
+#goalsList {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+#goalsList p {
   text-align: center;
-  color: #777;
-  margin-top: 30px;
-  font-size: 0.9rem;
+  color: var(--text-light);
+  opacity: 0.7;
+  font-size: 1.2rem;
 }
 
-/* === Responsive === */
+/* Responsive Design */
 @media (max-width: 600px) {
-  .app-container {
-    padding: 20px;
+  body {
+    padding: 10px;
   }
 
-  .add-goal-section {
-    flex-direction: column;
+  .goal-card {
+    padding: 15px;
   }
 
-  .add-goal-section button {
-    width: 100%;
+  .goal-card h3 {
+    font-size: 1.2rem;
   }
+
+  button, #logoutBtn, #addGoalBtn {
+    padding: 8px 16px;
+  }
+}
+
+/* Animation for loading */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.goal-card {
+  animation: fadeIn 0.5s ease-out;
+}
+
+/* Typography for success-driven aesthetic */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
 }
