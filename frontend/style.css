@@ -1,388 +1,388 @@
-/*
-|--------------------------------------------------------------------------
-| COMPLETE PROFESSIONAL DARK THEME CSS
-|--------------------------------------------------------------------------
-| - Full set of styles for the sleek dark/blue theme.
-| - Implements CSS Grid for perfectly centered title in the header.
-| - Includes responsive design for mobile devices.
-| - Ensures the footer is anchored to the bottom.
-*/
-
-/* --- 1. Root Variables & Font Import --- */
-
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
 
 :root {
-  --color-primary: #00c6ff;     /* Bright Blue Accent */
-  --color-secondary: #00ffb3;   /* Teal/Green Accent for Progress */
-  --color-error: #ff5252;       /* Clear Red for Delete/Logout */
-  --bg-dark-soft: #1b1b1b;      /* Main Background */
-  --bg-dark-card: #282828;      /* Slightly lighter background for components/cards */
-  --bg-dark-step: #1a1a1a;      /* Darker background for step inputs */
-  --text-light: #e6eef6;
-  --text-muted: #9aa7b3;
-  --shadow-subtle: 0 4px 12px rgba(0, 0, 0, 0.2);
+  --bg: #f8fafc;
+  --card-bg: #ffffff;
+  --text: #0f172a;
+  --text-muted: #64748b;
+  --primary: #2563eb;
+  --primary-hover: #1d4ed8;
+  --accent: #00c6ff;
+  --border: #e2e8f0;
+  --radius: 14px;
+  --shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
 }
 
-/* --- 2. Global & Layout (Sticky Footer) --- */
-
+/* === Reset & Base === */
 * {
-  box-sizing: border-box;
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
+  font-family: "Inter", sans-serif;
 }
 
 body {
-  font-family: "Poppins", sans-serif;
-  background: radial-gradient(circle at top left, #0d0d0d, var(--bg-dark-soft));
-  color: var(--text-light);
-  min-height: 100vh;
-  line-height: 1.5;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
   display: flex;
-  flex-direction: column; /* Needed for sticky footer */
+  justify-content: center;
+  min-height: 100vh;
+  padding: 40px 20px;
 }
 
-/* Container to push the footer down */
-.content-wrap {
-    flex-grow: 1; /* Takes up all available vertical space */
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* Centers app-container horizontally */
-}
-
+/* === Layout === */
 .app-container {
-    width: 90%;
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px 0;
+  width: 100%;
+  max-width: 900px;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 40px 50px;
+  transition: all 0.3s ease;
 }
 
-/* --- 3. Header & Navigation (Centered Title & User Profile) --- */
-
-.main-header-nav {
-  width: 100%; 
-  display: grid; 
-  grid-template-columns: 1fr auto 1fr; /* Left-spacer | Content (Centered) | Right-spacer */
+/* === Auth Pages (Login / Register) === */
+.auth-body {
+  background: linear-gradient(120deg, var(--primary), var(--accent));
+  display: flex;
+  justify-content: center;
   align-items: center;
-  margin-bottom: 20px;
+  height: 100vh;
 }
 
-/* Title is placed in the center column */
-.app-title {
-    grid-column: 2 / 3; 
-    margin: 0;
-    font-size: 1.8rem;
-    font-weight: 700;
-    color: var(--color-primary);
-    text-shadow: 0 0 5px rgba(0, 198, 255, 0.4);
+.auth-container {
+  background: white;
+  padding: 50px 40px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  width: 100%;
+  max-width: 420px;
+  text-align: center;
 }
 
-.subtitle-motto {
+.auth-container h1 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.auth-container .subtitle {
   color: var(--text-muted);
   font-size: 0.95rem;
-  font-weight: 300;
+  margin-bottom: 28px;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.auth-form input {
+  padding: 12px 14px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: #f8fafc;
+  font-size: 1rem;
+  transition: all 0.25s ease;
+}
+
+.auth-form input:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+.auth-form button {
+  background: var(--primary);
+  color: white;
+  font-weight: 600;
+  border: none;
+  border-radius: var(--radius);
+  padding: 12px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.auth-form button:hover {
+  background: var(--primary-hover);
+}
+
+.guest-btn {
+  background: transparent;
+  color: var(--primary);
+  border: 2px solid var(--primary);
+}
+
+.guest-btn:hover {
+  background: var(--primary);
+  color: white;
+}
+
+.switch-auth {
+  margin-top: 20px;
+  color: var(--text-muted);
+}
+
+.switch-auth a {
+  color: var(--primary);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.switch-auth a:hover {
+  text-decoration: underline;
+}
+
+/* === Header === */
+header {
   text-align: center;
   margin-bottom: 40px;
-  display: block; 
 }
 
-/* User Profile Section Styling */
-.user-profile {
-  grid-column: 3 / 4; /* Positioned in the right column */
-  justify-self: end; /* Pushes content to the far right */
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 8px 15px;
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 12px;
-  border: 1px solid rgba(0, 198, 255, 0.2);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-  transition: all 0.2s ease;
+header h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  background: linear-gradient(90deg, var(--primary), var(--accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
-.user-profile:hover {
-    border-color: var(--color-primary);
-    box-shadow: 0 2px 10px rgba(0, 198, 255, 0.2);
+header .subtitle {
+  color: var(--text-muted);
+  font-size: 1rem;
+  margin-top: 8px;
 }
 
-.user-greeting {
-  font-size: 0.95rem;
-  color: var(--text-light);
-  font-weight: 400;
+/* === User Info Bar === */
+#userInfo {
+  text-align: center;
+  color: var(--text-muted);
+  margin-bottom: 30px;
+  font-weight: 500;
 }
 
-.logout-btn {
-  background: var(--color-error);
-  border: none;
+#logoutBtn {
+  background: var(--primary);
   color: #fff;
-  padding: 6px 14px;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 0.85rem;
+  border: none;
+  border-radius: var(--radius);
+  padding: 10px 18px;
   font-weight: 600;
-  transition: all 0.2s ease;
+  cursor: pointer;
+  transition: all 0.25s ease;
 }
 
-.logout-btn:hover {
-  background: #d32f2f;
-  transform: translateY(-1px);
-  box-shadow: 0 2px 6px rgba(255, 82, 82, 0.4);
+#logoutBtn:hover {
+  background: var(--primary-hover);
 }
 
-/* --- 4. Main Content: Add Goal Section --- */
-
+/* === Add Goal Section === */
 .add-goal-section {
   display: flex;
-  gap: 10px;
   flex-wrap: wrap;
   justify-content: center;
+  gap: 14px;
   margin-bottom: 40px;
 }
 
 .add-goal-section input,
 .add-goal-section select {
   flex: 1;
-  min-width: 150px;
-  padding: 12px;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  color: var(--text-light);
-  border-radius: 10px;
+  min-width: 200px;
+  background: #f1f5f9;
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 12px 14px;
+  border-radius: var(--radius);
   font-size: 1rem;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
-}
-
-.add-goal-section select {
-    color: var(--text-muted);
-}
-
-.add-goal-section input::placeholder {
-  color: rgba(230, 238, 246, 0.5);
+  transition: all 0.25s ease;
 }
 
 .add-goal-section input:focus,
 .add-goal-section select:focus {
   outline: none;
-  border-color: var(--color-primary);
-  box-shadow: 0 0 0 3px rgba(0, 198, 255, 0.15);
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
 }
 
-.add-goal-section option {
-    background: var(--bg-dark-card); 
-    color: var(--text-light);
-}
-
-.add-goal-section .primary-btn {
+.add-goal-section button {
   padding: 12px 20px;
-  background: linear-gradient(90deg, var(--color-secondary), var(--color-primary));
+  background: var(--primary);
   border: none;
-  color: #021018; 
-  border-radius: 10px;
-  font-size: 1rem;
-  font-weight: 700;
+  border-radius: var(--radius);
+  color: #fff;
+  font-weight: 600;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.25s ease;
 }
 
-.add-goal-section .primary-btn:hover {
-  background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 198, 255, 0.4);
+.add-goal-section button:hover {
+  background: var(--primary-hover);
 }
 
-/* --- 5. Goal Card List & Structure --- */
-
-.goals-list {
-    padding-bottom: 40px;
-}
-
-/* Goal Card */
+/* === Goal Cards === */
 .goal-card {
-  background: var(--bg-dark-card);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 20px;
-  padding: 20px;
-  margin-bottom: 20px;
-  box-shadow: var(--shadow-subtle);
-  transition: all 0.3s ease;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px 26px;
+  margin-bottom: 24px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+  transition: all 0.25s ease;
 }
 
 .goal-card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
-  border-color: var(--color-primary);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow);
 }
 
 .goal-card h3 {
-  margin: 0 0 10px;
-  color: var(--color-primary);
   font-size: 1.25rem;
   font-weight: 600;
+  color: var(--text);
+  margin-bottom: 6px;
+  outline: none;
 }
 
-/* Progress Bar */
+.goal-card small {
+  color: var(--text-muted);
+  display: block;
+  margin-bottom: 10px;
+}
+
+/* === Progress === */
 .progress-container {
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 10px;
-  height: 8px;
-  width: 100%;
-  margin: 15px 0; /* Adjusted vertical margin */
+  height: 10px;
+  border-radius: 8px;
+  background: #e2e8f0;
   overflow: hidden;
+  margin-bottom: 10px;
 }
 
 .progress-bar {
   height: 100%;
-  background: linear-gradient(90deg, var(--color-secondary), var(--color-primary));
-  border-radius: 10px;
+  background: linear-gradient(90deg, var(--primary), var(--accent));
   transition: width 0.4s ease;
 }
-/* --- Step Input Component: AddStep --- */
 
-/* Base container for flex layout */
+/* === Steps === */
+.steps {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.step {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #f8fafc;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 10px 14px;
+  transition: all 0.25s ease;
+}
+
+.step:hover {
+  background: #f1f5f9;
+}
+
+.step span {
+  flex: 1;
+  color: var(--text);
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.step.done span {
+  text-decoration: line-through;
+  color: var(--primary);
+}
+
+.step button {
+  background: transparent;
+  border: none;
+  color: #ef4444;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.step button:hover {
+  transform: scale(1.2);
+}
+
+/* === Add Step === */
 .add-step {
   display: flex;
-  gap: 0.5rem; /* 8px */
-  margin-top: 0.75rem; /* 12px */
-  align-items: center;
-  padding: 0 0.25rem; 
+  gap: 10px;
+  margin-top: 12px;
 }
 
-/* --- Input Field Styling --- */
-
-.add-step input[type="text"] {
+.add-step input {
   flex: 1;
-  padding: 0.625rem 0.75rem; /* 10px 12px */
-  border-radius: 0.625rem; /* 10px */
-  border: 1px solid rgba(255, 255, 255, 0.1); 
-  background: rgba(255, 255, 255, 0.04);
-  font-family: inherit; 
-  color: #e6eef6;
-  font-size: 1rem;
-  transition: all 0.2s ease-in-out;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 10px;
+  background: #f1f5f9;
 }
-
-/* Placeholder text refinement */
-.add-step input[type="text"]::placeholder {
-  color: rgba(230, 238, 246, 0.6); 
-  opacity: 1; 
-}
-
-/* Focus state for accessibility and visual feedback */
-.add-step input[type="text"]:focus {
-  outline: none;
-  border-color: #00e5ff; 
-  box-shadow: 0 0 0 3px rgba(0, 229, 255, 0.3), 
-              0 0 10px rgba(0, 229, 255, 0.2);
-}
-
-/* --- Button Styling --- */
 
 .add-step button {
-  padding: 0.625rem 1rem; 
-  border-radius: 0.625rem; /* 10px */
   border: none;
-  cursor: pointer;
-  background: linear-gradient(90deg, #00ffb3 5%, #00c6ff 95%);
-  color: #021a24; 
-  font-weight: 700; 
-  font-size: 1rem; 
-  transition: all 0.25s cubic-bezier(0.25, 0.8, 0.25, 1);
-  box-shadow: 0 4px 15px rgba(0, 198, 255, 0.35); 
-}
-
-/* Hover/Active states for interactivity */
-.add-step button:hover {
-  transform: translateY(-3px); 
-  box-shadow: 0 8px 25px rgba(0, 198, 255, 0.5), 
-              0 2px 4px rgba(0, 0, 0, 0.2); 
-}
-
-.add-step button:active {
-  transform: translateY(-1px);
-  box-shadow: 0 3px 10px rgba(0, 198, 255, 0.25); 
-}
-
-/* Add a disabled state for completeness */
-.add-step button:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-  transform: none;
-  box-shadow: none;
-}
-/* Delete Goal Button */
-.delete-goal {
-  margin-top: 15px; /* Adjusted vertical margin */
-  width: 160px;
-  background: linear-gradient(90deg, #ff6b6b, var(--color-error));
-  color: #fff;
-  border: none;
+  border-radius: var(--radius);
   padding: 10px 14px;
-  border-radius: 12px;
+  background: var(--primary);
+  color: white;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.12s ease;
+  transition: all 0.25s ease;
+}
+
+.add-step button:hover {
+  background: var(--primary-hover);
+}
+
+/* === Delete Goal Button === */
+.delete-goal {
+  background: #ef4444;
+  color: white;
+  border: none;
+  border-radius: var(--radius);
+  padding: 10px 14px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 16px;
+  transition: all 0.25s ease;
 }
 
 .delete-goal:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(255, 59, 59, 0.3);
+  background: #dc2626;
 }
 
-/* --- 7. Sticky Footer (Bottom Anchor) --- */
+/* === Footer === */
+footer {
+  text-align: center;
+  margin-top: 40px;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
 
-.main-footer {
+/* === Responsive === */
+@media (max-width: 700px) {
+  .app-container {
+    padding: 25px;
+  }
+
+  .add-goal-section {
+    flex-direction: column;
+  }
+
+  .add-goal-section button {
     width: 100%;
-    text-align: center;
-    padding: 15px 20px;
-    background: #0d0d0d;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    font-size: 0.85rem;
-    color: var(--text-muted);
-}
-
-.main-footer p {
-    margin: 0;
-}
-
-.main-footer strong {
-    color: var(--color-primary);
-    font-weight: 600;
-}
-
-/* --- 8. Responsive Adjustments --- */
-
-@media (max-width: 600px) {
-    /* Header layout shift: Title stacks above User Profile */
-    .main-header-nav {
-        display: flex; /* Override grid for simplicity on mobile */
-        flex-direction: column; 
-        align-items: center; 
-        gap: 15px;
-    }
-
-    .app-title {
-        font-size: 1.5rem;
-        text-align: center; /* Ensure title is centered visually */
-    }
-    
-    .user-profile {
-        width: 100%;
-        justify-content: space-between;
-    }
-
-    /* Input section cleanup: stack inputs vertically */
-    .add-goal-section {
-        flex-direction: column;
-        align-items: stretch;
-        gap: 8px; /* Slightly tighter spacing */
-    }
-
-    .add-goal-section input,
-    .add-goal-section select,
-    .add-goal-section .primary-btn {
-        min-width: unset;
-        width: 100%;
-    }
+  }
 }
