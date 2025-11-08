@@ -21,17 +21,22 @@
   font-family: "Inter", sans-serif;
 }
 
+html, body {
+  height: 100%;
+}
+
 body {
   background: var(--bg);
   color: var(--text);
   line-height: 1.6;
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
   min-height: 100vh;
-  padding: 40px 20px;
 }
 
-/* === Layout === */
+/* === App Layout === */
 .app-container {
   width: 100%;
   max-width: 900px;
@@ -40,6 +45,7 @@ body {
   border-radius: var(--radius);
   box-shadow: var(--shadow);
   padding: 40px 50px;
+  margin-bottom: 60px;
   transition: all 0.3s ease;
 }
 
@@ -53,19 +59,22 @@ body {
 }
 
 .auth-container {
-  background: white;
+  background: var(--card-bg);
   padding: 50px 40px;
   border-radius: var(--radius);
   box-shadow: var(--shadow);
   width: 100%;
   max-width: 420px;
   text-align: center;
+  animation: fadeIn 0.6s ease;
 }
 
 .auth-container h1 {
-  font-size: 1.8rem;
+  font-size: 1.9rem;
   font-weight: 700;
-  color: var(--text);
+  background: linear-gradient(90deg, var(--primary), var(--accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .auth-container .subtitle {
@@ -364,31 +373,41 @@ header .subtitle {
   background: #dc2626;
 }
 
-/* ===== Footer Styling ===== */
+/* === Footer === */
 footer {
-  position: fixed;
-  bottom: 0;
-  left: 0;
   width: 100%;
   text-align: center;
   font-size: 0.9rem;
-  color: #6b7280; /* soft gray */
-  padding: 15px 0;
-  background: transparent;
-  backdrop-filter: blur(6px);
+  color: var(--text-muted);
+  padding: 20px 0;
+  border-top: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(8px);
+  margin-top: auto;
 }
 
 footer a {
-  color: #3b82f6;
+  color: var(--primary);
   text-decoration: none;
   font-weight: 500;
   transition: color 0.3s ease;
 }
 
 footer a:hover {
-  color: #2563eb;
+  color: var(--primary-hover);
 }
 
+/* === Animations === */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 
 /* === Responsive === */
 @media (max-width: 700px) {
@@ -402,5 +421,9 @@ footer a:hover {
 
   .add-goal-section button {
     width: 100%;
+  }
+
+  footer {
+    font-size: 0.8rem;
   }
 }
