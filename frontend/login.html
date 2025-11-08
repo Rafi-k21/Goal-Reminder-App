@@ -3,24 +3,29 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Login - Goal Reminder</title>
+  <title>Login | Goal Tracker</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body class="auth-body">
   <div class="auth-container">
     <h1>🔐 Login</h1>
-    <p>Welcome back! Let’s achieve those goals.</p>
+    <p class="subtitle">Welcome back! Let’s achieve those goals.</p>
+    
+    <form class="auth-form" id="loginForm">
+      <input type="email" id="loginEmail" placeholder="Enter your email" required />
+      <input type="password" id="loginPassword" placeholder="Enter your password" required />
+      <button type="submit">Login</button>
+    </form>
 
-    <input id="email" type="email" placeholder="Email" required />
-    <input id="password" type="password" placeholder="Password" required />
-    <button id="loginBtn">Login</button>
+    <div class="switch-auth">
+      Don’t have an account? <a href="register.html">Register</a>
+    </div>
 
-    <p>Don’t have an account? <a href="register.html">Register</a></p>
-
-    <hr />
-    <button id="guestBtn" class="guest-btn">Continue as Guest 👤</button>
+    <button class="guest-btn" id="guestLogin">👤 Continue as Guest</button>
   </div>
 
-  <script src="login.js"></script>
+  <footer>
+    © 2025 Goal Tracker. Built with purpose by Rafi Khan.
+  </footer>
 </body>
 </html>

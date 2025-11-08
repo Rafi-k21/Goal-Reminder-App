@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Register - Goal Reminder</title>
+  <title>Register | Goal Tracker</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body class="auth-body">
@@ -11,15 +11,22 @@
     <h1>📈 Create Account</h1>
     <p>Start achieving your goals today</p>
 
-    <input id="name" type="text" placeholder="Full Name" required />
-    <input id="email" type="email" placeholder="Email" required />
-    <input id="password" type="password" placeholder="Password" required />
-    <button id="registerBtn">Sign Up</button>
+    <form class="auth-form" id="registerForm">
+      <input type="text" id="registerName" placeholder="Full Name" required />
+      <input type="email" id="registerEmail" placeholder="Email" required />
+      <input type="password" id="registerPassword" placeholder="Password" required />
+      <button type="submit">Register</button>
+    </form>
 
-    <p>Already have an account? <a href="login.html">Login</a></p>
+    <div class="switch-auth">
+      Already have an account? <a href="login.html">Login</a>
+    </div>
+
+    <button class="guest-btn" id="guestAccess">👤 Continue as Guest</button>
   </div>
 
-  <!-- ✅ Script now loads after DOM -->
-  <script src="register.js"></script>
+  <footer>
+    © 2025 Goal Tracker. Built with purpose by Rafi Khan.
+  </footer>
 </body>
 </html>
