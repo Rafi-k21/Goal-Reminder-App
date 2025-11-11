@@ -1,429 +1,196 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
-
-:root {
-  --bg: #f8fafc;
-  --card-bg: #ffffff;
-  --text: #0f172a;
-  --text-muted: #64748b;
-  --primary: #2563eb;
-  --primary-hover: #1d4ed8;
-  --accent: #00c6ff;
-  --border: #e2e8f0;
-  --radius: 14px;
-  --shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
-}
-
-/* === Reset & Base === */
+/* ================================
+   Global Reset & Base
+================================ */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Inter", sans-serif;
-}
-
-html, body {
-  height: 100%;
+  font-family: 'Poppins', sans-serif;
 }
 
 body {
-  background: var(--bg);
-  color: var(--text);
-  line-height: 1.6;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  background-color: #0b0c10;
+  color: #e6f1ff;
   min-height: 100vh;
-}
-
-/* === App Layout === */
-.app-container {
-  width: 100%;
-  max-width: 900px;
-  background: var(--card-bg);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  padding: 40px 50px;
-  margin-bottom: 60px;
-  transition: all 0.3s ease;
-}
-
-/* === Auth Pages (Login / Register) === */
-.auth-body {
-  background: linear-gradient(120deg, var(--primary), var(--accent));
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-}
-
-.auth-container {
-  background: var(--card-bg);
-  padding: 50px 40px;
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  width: 100%;
-  max-width: 420px;
-  text-align: center;
-  animation: fadeIn 0.6s ease;
-}
-
-.auth-container h1 {
-  font-size: 1.9rem;
-  font-weight: 700;
-  background: linear-gradient(90deg, var(--primary), var(--accent));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.auth-container .subtitle {
-  color: var(--text-muted);
-  font-size: 0.95rem;
-  margin-bottom: 28px;
-}
-
-.auth-form {
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  justify-content: space-between;
 }
 
-.auth-form input {
-  padding: 12px 14px;
-  border-radius: var(--radius);
-  border: 1px solid var(--border);
-  background: #f8fafc;
-  font-size: 1rem;
-  transition: all 0.25s ease;
-}
-
-.auth-form input:focus {
-  outline: none;
-  border-color: var(--primary);
-  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
-}
-
-.auth-form button {
-  background: var(--primary);
-  color: white;
-  font-weight: 600;
-  border: none;
-  border-radius: var(--radius);
-  padding: 12px;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: all 0.25s ease;
-}
-
-.auth-form button:hover {
-  background: var(--primary-hover);
-}
-
-.guest-btn {
-  background: transparent;
-  color: var(--primary);
-  border: 2px solid var(--primary);
-}
-
-.guest-btn:hover {
-  background: var(--primary);
-  color: white;
-}
-
-.switch-auth {
-  margin-top: 20px;
-  color: var(--text-muted);
-}
-
-.switch-auth a {
-  color: var(--primary);
-  font-weight: 600;
-  text-decoration: none;
-}
-
-.switch-auth a:hover {
-  text-decoration: underline;
-}
-
-/* === Header === */
+/* ================================
+   Header / Navbar
+================================ */
 header {
-  text-align: center;
-  margin-bottom: 40px;
-}
-
-header h1 {
-  font-size: 2rem;
-  font-weight: 700;
-  background: linear-gradient(90deg, var(--primary), var(--accent));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-header .subtitle {
-  color: var(--text-muted);
-  font-size: 1rem;
-  margin-top: 8px;
-}
-
-/* === User Info Bar === */
-#userInfo {
-  text-align: center;
-  color: var(--text-muted);
-  margin-bottom: 30px;
-  font-weight: 500;
-}
-
-#logoutBtn {
-  background: var(--primary);
-  color: #fff;
-  border: none;
-  border-radius: var(--radius);
-  padding: 10px 18px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.25s ease;
-}
-
-#logoutBtn:hover {
-  background: var(--primary-hover);
-}
-
-/* === Add Goal Section === */
-.add-goal-section {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 14px;
-  margin-bottom: 40px;
-}
-
-.add-goal-section input,
-.add-goal-section select {
-  flex: 1;
-  min-width: 200px;
-  background: #f1f5f9;
-  border: 1px solid var(--border);
-  color: var(--text);
-  padding: 12px 14px;
-  border-radius: var(--radius);
-  font-size: 1rem;
-  transition: all 0.25s ease;
-}
-
-.add-goal-section input:focus,
-.add-goal-section select:focus {
-  outline: none;
-  border-color: var(--primary);
-  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
-}
-
-.add-goal-section button {
-  padding: 12px 20px;
-  background: var(--primary);
-  border: none;
-  border-radius: var(--radius);
-  color: #fff;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.25s ease;
-}
-
-.add-goal-section button:hover {
-  background: var(--primary-hover);
-}
-
-/* === Goal Cards === */
-.goal-card {
-  background: var(--card-bg);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 24px 26px;
-  margin-bottom: 24px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
-  transition: all 0.25s ease;
-}
-
-.goal-card:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--shadow);
-}
-
-.goal-card h3 {
-  font-size: 1.25rem;
-  font-weight: 600;
-  color: var(--text);
-  margin-bottom: 6px;
-  outline: none;
-}
-
-.goal-card small {
-  color: var(--text-muted);
-  display: block;
-  margin-bottom: 10px;
-}
-
-/* === Progress === */
-.progress-container {
-  height: 10px;
-  border-radius: 8px;
-  background: #e2e8f0;
-  overflow: hidden;
-  margin-bottom: 10px;
-}
-
-.progress-bar {
-  height: 100%;
-  background: linear-gradient(90deg, var(--primary), var(--accent));
-  transition: width 0.4s ease;
-}
-
-/* === Steps === */
-.steps {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  margin-top: 16px;
-}
-
-.step {
+  background: rgba(10, 10, 15, 0.8);
+  backdrop-filter: blur(8px);
+  padding: 15px 40px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: #f8fafc;
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 10px 14px;
-  transition: all 0.25s ease;
+  border-bottom: 1px solid rgba(0, 191, 255, 0.2);
+  box-shadow: 0 0 10px rgba(0, 191, 255, 0.1);
 }
 
-.step:hover {
-  background: #f1f5f9;
+header h1 {
+  color: #00bfff;
+  font-size: 1.8rem;
+  font-weight: 600;
+  text-shadow: 0 0 10px rgba(0, 191, 255, 0.6);
 }
 
-.step span {
+nav a {
+  color: #e6f1ff;
+  text-decoration: none;
+  margin-left: 25px;
+  transition: 0.3s ease;
+}
+
+nav a:hover {
+  color: #00bfff;
+  text-shadow: 0 0 10px rgba(0, 191, 255, 0.6);
+}
+
+/* ================================
+   Main Content & Cards
+================================ */
+main {
   flex: 1;
-  color: var(--text);
-  font-size: 1rem;
-  cursor: pointer;
-}
-
-.step.done span {
-  text-decoration: line-through;
-  color: var(--primary);
-}
-
-.step button {
-  background: transparent;
-  border: none;
-  color: #ef4444;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: transform 0.2s;
-}
-
-.step button:hover {
-  transform: scale(1.2);
-}
-
-/* === Add Step === */
-.add-step {
   display: flex;
-  gap: 10px;
-  margin-top: 12px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
 }
 
-.add-step input {
-  flex: 1;
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 10px;
-  background: #f1f5f9;
-}
-
-.add-step button {
-  border: none;
-  border-radius: var(--radius);
-  padding: 10px 14px;
-  background: var(--primary);
-  color: white;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.25s ease;
-}
-
-.add-step button:hover {
-  background: var(--primary-hover);
-}
-
-/* === Delete Goal Button === */
-.delete-goal {
-  background: #ef4444;
-  color: white;
-  border: none;
-  border-radius: var(--radius);
-  padding: 10px 14px;
-  font-weight: 600;
-  cursor: pointer;
-  margin-top: 16px;
-  transition: all 0.25s ease;
-}
-
-.delete-goal:hover {
-  background: #dc2626;
-}
-
-/* === Footer === */
-footer {
+.card {
+  background: rgba(17, 19, 25, 0.7);
+  border: 1px solid rgba(0, 191, 255, 0.2);
+  box-shadow: 0 0 25px rgba(0, 191, 255, 0.08);
+  border-radius: 18px;
+  padding: 35px;
   width: 100%;
+  max-width: 450px;
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 25px rgba(0, 191, 255, 0.2);
+}
+
+/* ================================
+   Inputs & Buttons
+================================ */
+input, textarea {
+  width: 100%;
+  padding: 12px 15px;
+  background: #0e1015;
+  border: 1px solid rgba(0, 191, 255, 0.2);
+  border-radius: 10px;
+  color: #e6f1ff;
+  font-size: 1rem;
+  margin-top: 12px;
+  margin-bottom: 20px;
+  transition: all 0.3s ease;
+}
+
+input:focus, textarea:focus {
+  border-color: #00bfff;
+  box-shadow: 0 0 10px rgba(0, 191, 255, 0.3);
+  outline: none;
+}
+
+button {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 500;
+  background: linear-gradient(90deg, #0078ff, #00bfff);
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 10px rgba(0, 191, 255, 0.2);
+}
+
+button:hover {
+  box-shadow: 0 0 20px rgba(0, 191, 255, 0.6);
+  transform: translateY(-2px);
+}
+
+/* ================================
+   Footer
+================================ */
+footer {
+  background: rgba(10, 10, 15, 0.85);
+  color: #cbd5e1;
   text-align: center;
+  padding: 18px;
+  border-top: 1px solid rgba(0, 191, 255, 0.15);
+  box-shadow: 0 -2px 10px rgba(0, 191, 255, 0.1);
+}
+
+footer p {
   font-size: 0.9rem;
-  color: var(--text-muted);
-  padding: 20px 0;
-  border-top: 1px solid var(--border);
-  background: rgba(255, 255, 255, 0.5);
-  backdrop-filter: blur(8px);
-  margin-top: auto;
+  color: #a5b4fc;
 }
 
 footer a {
-  color: var(--primary);
+  color: #00bfff;
   text-decoration: none;
-  font-weight: 500;
-  transition: color 0.3s ease;
+  margin-left: 5px;
+  transition: 0.3s ease;
 }
 
 footer a:hover {
-  color: var(--primary-hover);
+  color: #1e90ff;
+  text-shadow: 0 0 10px rgba(0, 191, 255, 0.5);
 }
 
-/* === Animations === */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(8px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+/* ================================
+   Login / Register Page
+================================ */
+.auth-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 70px 20px;
 }
 
-/* === Responsive === */
-@media (max-width: 700px) {
-  .app-container {
-    padding: 25px;
-  }
+.auth-box {
+  background: rgba(15, 16, 20, 0.9);
+  border: 1px solid rgba(0, 191, 255, 0.2);
+  border-radius: 20px;
+  padding: 40px;
+  max-width: 400px;
+  width: 100%;
+  box-shadow: 0 0 20px rgba(0, 191, 255, 0.15);
+}
 
-  .add-goal-section {
+.auth-box h2 {
+  text-align: center;
+  color: #00bfff;
+  margin-bottom: 25px;
+  font-weight: 600;
+  text-shadow: 0 0 10px rgba(0, 191, 255, 0.5);
+}
+
+/* ================================
+   Responsive
+================================ */
+@media (max-width: 768px) {
+  header {
     flex-direction: column;
+    text-align: center;
   }
 
-  .add-goal-section button {
-    width: 100%;
+  nav {
+    margin-top: 10px;
   }
 
-  footer {
-    font-size: 0.8rem;
+  .card, .auth-box {
+    padding: 25px;
   }
 }
